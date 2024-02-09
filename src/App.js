@@ -29,6 +29,16 @@ function App() {
         setType(e.target.value);
     }
 
+    function handleDeleteItem(index) {
+        if (items[index].type === "Expense") {
+            setTotal(total + (items[index].amount * items[index].price));
+        }
+        else if (items[index].type === "Income") {
+            setTotal(total - (items[index].amount * items[index].price));
+        }
+        setItems(items.slice(0, index).concat(items.slice(index + 1)));
+    }
+
     function handleSubmit(e) {
         e.preventDefault();
         if (name !== "" && type !== "" && amount > 0 && price > 0 && date !== "") {
@@ -105,10 +115,11 @@ function App() {
                         <th>Amount</th>
                         <th>Type</th>
                         <th>Cost</th>
+                        <th>Action</th>
                     </tr>)}
                 </thead>
                 <tbody>
-                    {items.map((i) => 
+                    {items.map((i, index) => 
                     <tr>
                         <td>{i.date}</td>
                         <td>{i.name}</td>
@@ -116,12 +127,14 @@ function App() {
                         <td>{i.amount}</td>
                         <td className={`${i.type === "Expense"? "red" : "green"}`}>{i.type}</td>
                         <td className={`${i.type === "Expense"? "red" : "green"}`}>{i.amount * i.price}</td>
+                        <td><button className='delete' onClick={() => handleDeleteItem(index)}>Delete</button></td>
                     </tr>
                     )}
-                    <tr>
+                    {items.length !== 0 && (<tr>
                         <td colSpan="5">Total</td>
                         <td className={`${total < 0 ? "red" : "green"}`}>{total}</td>
-                    </tr>
+                        <td></td>
+                    </tr>)}
                 </tbody>
             </table>
         </div>

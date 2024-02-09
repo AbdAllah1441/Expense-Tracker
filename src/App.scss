@@ -17,6 +17,7 @@
 }
 
 .App {
+    color: #0c2c43;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     display: flex;
     justify-content: center;
@@ -64,7 +65,8 @@
     }
 
     .tracker {
-        width: 100%;
+        align-self: center;
+        width: 95%;
         border: 1px solid #0c2c43;
         margin-top: 8vh;
         border-spacing: 0px;
@@ -80,7 +82,7 @@
             padding: 15px;
             border: 1px solid #0c2c43;
             text-align: center;
-            width: 16%;
+            width: calc(100% / 7);
         }
 
         td {
@@ -93,6 +95,22 @@
 
         .red {
             color: red;
+        }
+
+        td {
+
+            .delete {
+                background-color: #d71616;
+                color: #ffffff;
+                padding: 5px 15px;
+                font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                border-radius: 4px;
+                font-size: 0.9em;
+    
+                &:hover {
+                    cursor: pointer;
+                }
+            }
         }
     }
 }
